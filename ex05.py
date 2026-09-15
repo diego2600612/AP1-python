@@ -1,4 +1,7 @@
 def ler_float(mensagem, minimo=0, maximo=10):
+    """Solicita a entrada de um número decimal (float) do usuário.
+    Garante que o valor digitado esteja dentro de um intervalo válido (minimo e maximo).
+    """
     while True:
         try:
             valor = float(input(mensagem))
@@ -10,6 +13,9 @@ def ler_float(mensagem, minimo=0, maximo=10):
 
 
 def ler_inteiro(mensagem, minimo=0):
+    """Solicita a entrada de um número inteiro do usuário.
+    Garante que o valor digitado seja maior ou igual ao limite mínimo informado.
+    """
     while True:
         try:
             valor = int(input(mensagem))
@@ -21,6 +27,9 @@ def ler_inteiro(mensagem, minimo=0):
 
 
 def verificar_aprovacao():
+    """Valida a aprovação de um aluno com base na nota (mínimo 7.0) 
+    e frequência (mínimo 75%).
+    """
     print("\n=== VERIFICACAO DE APROVACAO ===")
 
     nota = ler_float("Digite a nota do aluno (0 a 10): ", 0, 10)
@@ -37,6 +46,9 @@ def verificar_aprovacao():
 
 
 def classificar_nota():
+    """Mapeia uma nota numérica para um conceito textual 
+    (EXCELENTE, BOM, REGULAR, RUIM, PESSIMO).
+    """
     print("\n=== CLASSIFICACAO DE NOTA ===")
 
     nota = ler_float("Digite a nota para classificar (0 a 10): ", 0, 10)
@@ -57,6 +69,9 @@ def classificar_nota():
 
 
 def processar_menu():
+    """Simula a seleção de uma opção de menu utilizando um dicionário 
+    para realizar a busca rápida da resposta.
+    """
     print("\n=== PROCESSADOR DE MENU ===")
     print("1 - Listar alunos")
     print("2 - Cadastrar aluno")
@@ -73,10 +88,14 @@ def processar_menu():
         "sair": "OPCAO 4: Sair do sistema"
     }
 
+    # Se a opção não existir no dicionário, retorna a mensagem padrão de erro
     print(menu.get(opcao, f"OPCAO INVALIDA: {opcao}"))
 
 
 def avaliar_aluno():
+    """Avalia individualmente o status do aluno cruzando nota com número de faltas.
+    Determina se o aluno é Destaque, Aprovado, Recuperação ou Reprovado.
+    """
     print("\n=== AVALIACAO DO ALUNO ===")
 
     nome = input("Digite o nome do aluno: ")
@@ -96,6 +115,9 @@ def avaliar_aluno():
 
 
 def verificar_multiplos_alunos():
+    """Executa a função 'verificar_aprovacao' em laço repetitivo 
+    até que o usuário opte por parar.
+    """
     print("\n=== VERIFICAR MULTIPLOS ALUNOS ===")
 
     while True:
@@ -106,6 +128,9 @@ def verificar_multiplos_alunos():
 
 
 def classificar_multiplas_notas():
+    """Executa a função 'classificar_nota' repetidamente 
+    até o usuário indicar parada.
+    """
     print("\n=== CLASSIFICAR MULTIPLAS NOTAS ===")
 
     while True:
@@ -116,6 +141,9 @@ def classificar_multiplas_notas():
 
 
 def processar_lista_alunos():
+    """Coleta dados de múltiplos alunos em uma lista de dicionários 
+    e depois processa o relatório com o status de cada um.
+    """
     print("\n=== PROCESSAR LISTA DE ALUNOS ===")
 
     alunos = []
@@ -124,12 +152,14 @@ def processar_lista_alunos():
         nota = ler_float("Nota (0 a 10): ", 0, 10)
         faltas = ler_inteiro("Faltas: ", 0)
 
+        # Adiciona o registro do aluno à lista
         alunos.append({"nome": nome, "nota": nota, "faltas": faltas})
 
         continuar = input("Adicionar outro aluno? (s/n): ").strip().lower()
         if continuar != "s":
             break
 
+    # Imprime o relatório apenas se existirem alunos cadastrados
     if alunos:
         print("\n" + "-" * 30)
         print("RESULTADOS:")
@@ -152,6 +182,7 @@ def processar_lista_alunos():
 
 
 def main():
+    """Menu principal simples com navegação entre as funções básicas de avaliação."""
     print("=" * 50)
     print("SISTEMA ESCOLAR SIMPLES")
     print("Demonstracao de estruturas de selecao")
@@ -187,6 +218,7 @@ def main():
 
 
 def menu_avancado():
+    """Menu avançado que inclui opções para o tratamento em lote de múltiplos alunos."""
     print("=" * 50)
     print("SISTEMA ESCOLAR - MENU AVANCADO")
     print("=" * 50)
@@ -231,6 +263,7 @@ def menu_avancado():
 
 
 def testar_rapido():
+    """Menu de execução direta para testes rápidos de cada funcionalidade."""
     print("\n=== TESTE RAPIDO ===")
     print("1 - Testar Aprovacao")
     print("2 - Testar Classificacao")
@@ -251,6 +284,7 @@ def testar_rapido():
         print("Opcao invalida!")
 
 
+# Ponto de entrada do script: pergunto qual interface de menu o usuário quer executar
 if __name__ == "__main__":
     print("=" * 50)
     print("SISTEMA ESCOLAR - VERSOES DISPONIVEIS")
